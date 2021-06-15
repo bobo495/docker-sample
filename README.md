@@ -5,7 +5,7 @@
 
 ## 已完成组件
 
-### [pulsar](./pulsar/README.md)
+### [pulsar](./pulsar)
 
 > 相关链接：[pulsar官网](https://pulsar.apache.org), [pulsar官方文档](https://pulsar.apache.org/docs/zh-CN/standalone/)
 
