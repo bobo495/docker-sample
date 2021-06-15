@@ -27,7 +27,3 @@ docker run -itd \
             /pulsar-manager/entrypoint.sh & \
             tail -F /pulsar-manager/pulsar-manager/pulsar-manager.log" 
 
-    # -v pulsardata:/pulsar/data \
-    # -v pulsarconf:/pulsar/conf \
-
-#  sed -i '/^clusterName/ s|.*|clusterName=pulsar-standalone|' /pulsar/conf/standalone.conf & \
