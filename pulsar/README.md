@@ -35,7 +35,7 @@ sh initAccount.sh
 ```
 
 管理员信息初始化完成后，可从以下地址登入：
-> pulsar-manager: http://127.0.0.1:9527/# 
+> pulsar-manager: http://127.0.0.1:9527/#  
 > username: `admin`, password: `pulsar`
 
 构建成功后，点击 Clusters -> Cluster Name: standalone -> BROKERS ，可看到broker列表说明`standalone`方式部署完成
@@ -104,10 +104,10 @@ sh initAccount.sh
 
 管理员信息初始化完成后，可从以下地址登入：
 - Pulsar Manager
-    > http://127.0.0.1:9527/#  
+    > http://127.0.0.1:9527/#   
     > username: `admin`, password: `pulsar`
 - BookKeeper Visual Manager
-    > http://127.0.0.1:7750/bkvm/#/login
+    > http://127.0.0.1:7750/bkvm/#/login  
     > username: `admin`, password: `admin`
 
 构建成功后，以下两个页面正常说明`cluster`方式部署完成
