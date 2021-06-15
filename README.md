@@ -5,7 +5,9 @@
 
 ## 已完成组件
 
-### [pulsar](https://pulsar.apache.org)
+### [pulsar](./pulsar/README.md)
+
+> 相关链接：[pulsar官网](https://pulsar.apache.org), [pulsar官方文档](https://pulsar.apache.org/docs/zh-CN/standalone/)
 
 - 支持单节点模式部署
 - 支持集群模式部署
