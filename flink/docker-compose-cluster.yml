@@ -1,0 +1,27 @@
+version: '3.8'
+
+services:
+  jobmanager:
+    image: flink:scala_2.11-java8
+    ports:
+      - "8081:8081"
+      - "6123:6123"
+    command: jobmanager
+    environment:
+      - JOB_MANAGER_RPC_ADDRESS=jobmanager
+
+  taskmanager1:
+    image: flink:scala_2.11-java8
+    command: taskmanager
+    environment:
+      - JOB_MANAGER_RPC_ADDRESS=jobmanager
+    depends_on:
+      - jobmanager
+
+  taskmanager2:
+    image: flink:scala_2.11-java8
+    command: taskmanager
+    environment:
+      - JOB_MANAGER_RPC_ADDRESS=jobmanager
+    depends_on:
+      - jobmanager
