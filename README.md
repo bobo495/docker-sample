@@ -12,7 +12,7 @@
 - 支持单节点模式部署
 - 支持集群模式部署
 
-### [flink]](./flink)
+### [flink](./flink)
 
 > 相关链接：[flink官方文档](https://flink.apache.org/)
 
