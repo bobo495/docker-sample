@@ -6,22 +6,27 @@ services:
     ports:
       - "8081:8081"
       - "6123:6123"
-    command: jobmanager
     environment:
       - JOB_MANAGER_RPC_ADDRESS=jobmanager
+    entrypoint: 
+      - sh 
+      - -c  
+      - |
+        sed -i 's/start-foreground/start/g' /docker-entrypoint.sh
+        /docker-entrypoint.sh jobmanager
+        sleep 10 && tail -f -n +0 /opt/flink/log/*
 
-  taskmanager1:
+  taskmanager:
     image: flink:scala_2.11-java8
-    command: taskmanager
     environment:
       - JOB_MANAGER_RPC_ADDRESS=jobmanager
     depends_on:
       - jobmanager
-
-  taskmanager2:
-    image: flink:scala_2.11-java8
-    command: taskmanager
-    environment:
-      - JOB_MANAGER_RPC_ADDRESS=jobmanager
-    depends_on:
-      - jobmanager
+    scale: 2
+    entrypoint: 
+      - sh 
+      - -c  
+      - |
+        sed -i 's/start-foreground/start/g' /docker-entrypoint.sh
+        /docker-entrypoint.sh taskmanager
+        sleep 10 && tail -f -n +0 /opt/flink/log/*
