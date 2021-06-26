@@ -4,10 +4,14 @@
 ## 准备工作
 
 1. 安装最新版本的[docker](https://www.docker.com/community-edition)
-2. 拉取[flink](https://hub.docker.com/r/apachepulsar/pulsar)
+2. 拉取[flink](https://hub.docker.com/_/flink), [Prometheus](https://hub.docker.com/r/prom/prometheus), [pushgateway](https://hub.docker.com/r/prom/pushgateway), [grafana](https://hub.docker.com/r/grafana/grafana)
 
-``` linux
+``` shell
 docker pull flink:scala_2.11-java8
+#  flink-monitor 涉及额外镜像
+docker pull prom/prometheus
+docker pull prom/pushgateway
+docker pull grafana/grafana
 ```
 
 ## 部署流程
@@ -132,4 +136,5 @@ docker compose -f docker-compose-cluster-with-volumes.yml start
 - [Flink Web UI不显示STDOUT问题](https://stackoverflow.com/questions/54036010/apache-flink-the-file-stdout-is-not-available-on-the-taskexecutor)
 - [Flink Metrics文档](https://ci.apache.org/projects/flink/flink-docs-release-1.13/docs/ops/metrics/)
 - [Prometheus Docker文档](https://prometheus.io/docs/prometheus/latest/installation/)
-- [Grafana Docker文档](https://grafana.com/docs/grafana/latest/installation/docker/)
+- [Grafana Docker部署文档](https://grafana.com/docs/grafana/latest/installation/docker/)
+- [Grafana Docker配置文档](https://grafana.com/docs/grafana/latest/administration/configure-docker/)
