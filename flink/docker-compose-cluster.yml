@@ -7,7 +7,9 @@ services:
       - "8081:8081"
       - "6123:6123"
     environment:
-      - JOB_MANAGER_RPC_ADDRESS=jobmanager
+      - |
+        FLINK_PROPERTIES=
+        jobmanager.rpc.address: jobmanager
     entrypoint: 
       - sh 
       - -c  
@@ -19,7 +21,9 @@ services:
   taskmanager:
     image: flink:scala_2.11-java8
     environment:
-      - JOB_MANAGER_RPC_ADDRESS=jobmanager
+      - |
+        FLINK_PROPERTIES=
+        jobmanager.rpc.address: jobmanager
     depends_on:
       - jobmanager
     scale: 2
