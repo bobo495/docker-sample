@@ -12,10 +12,10 @@ docker pull flink:scala_2.11-java8
 
 ## 部署流程
  
-包含三个版本Flink集群部署方法
+**包含三个版本Flink集群部署方法**
 
 1. [Flink集群部署](#flink集群部署)
-    > 对应文件为docker-compose-cluster.yml，常规Flink集群
+    > 常规Flink集群
 
 2. [挂载lib目录部署](#挂载lib目录部署)
    > 挂载flink客户端的lib目录，便于添加第三方依赖包
