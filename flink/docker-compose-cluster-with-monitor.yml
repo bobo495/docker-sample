@@ -1,0 +1,76 @@
+version: '3.8'
+
+services:
+  jobmanager:
+    image: flink:scala_2.11-java8
+    ports:
+      - "8081:8081"
+      - "6123:6123"
+    command: jobmanager
+    environment:
+      - |
+        FLINK_PROPERTIES=
+        metrics.reporter.promgateway.class: org.apache.flink.metrics.prometheus.PrometheusPushGatewayReporter
+        metrics.reporter.promgateway.host: pushgateway
+        metrics.reporter.promgateway.port: 9091
+        metrics.reporter.promgateway.jobName: flink-jobmanager
+        metrics.reporter.promgateway.randomJobNameSuffix: true
+        metrics.reporter.promgateway.deleteOnShutdown: false
+    volumes:
+      - ./volumes/lib:/opt/flink/lib/
+    entrypoint: 
+      - sh 
+      - -c  
+      - |
+        sed -i 's/start-foreground/start/g' /docker-entrypoint.sh
+        /docker-entrypoint.sh jobmanager
+        sleep 10 && tail -f -n +0 /opt/flink/log/*
+    depends_on: 
+      - pushgateway
+
+  taskmanager:
+    image: flink:scala_2.11-java8
+    environment:
+      - |
+        FLINK_PROPERTIES=
+        metrics.reporter.promgateway.class: org.apache.flink.metrics.prometheus.PrometheusPushGatewayReporter
+        metrics.reporter.promgateway.host: pushgateway
+        metrics.reporter.promgateway.port: 9091
+        metrics.reporter.promgateway.jobName: flink-taskmanager
+        metrics.reporter.promgateway.randomJobNameSuffix: true
+        metrics.reporter.promgateway.deleteOnShutdown: false
+    volumes:
+      - ./volumes/lib:/opt/flink/lib/
+    depends_on:
+      - jobmanager
+    scale: 2
+    entrypoint: 
+      - sh 
+      - -c  
+      - |
+        sed -i 's/start-foreground/start/g' /docker-entrypoint.sh
+        /docker-entrypoint.sh taskmanager
+        sleep 10 && tail -f -n +0 /opt/flink/log/*
+
+  prometheus:
+    image: prom/prometheus
+    ports:
+      - "9090:9090"
+    entrypoint: 
+      - sh
+      - -c
+      - |
+        echo -e "  - job_name: pushgateway\n    static_configs:\n      - targets: ['pushgateway:9091']\n        labels:\n          instance: pushgateway" >> /etc/prometheus/prometheus.yml
+        /bin/prometheus --config.file=/etc/prometheus/prometheus.yml --storage.tsdb.path=/prometheus --web.console.libraries=/usr/share/prometheus/console_libraries --web.console.templates=/usr/share/prometheus/consoles
+    depends_on:
+      - pushgateway
+
+  pushgateway:
+    image: prom/pushgateway
+    ports:
+      - "9091:9091"
+  
+  grafana:
+    image: grafana/grafana
+    ports:
+      - "3000:3000"
