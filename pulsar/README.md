@@ -116,9 +116,17 @@ sh initAccount.sh
 - 进入`BookKeeper Visual Manager`可看到3个BookKeeper节点
     ![](images/2021-06-15-10-51-18.png)
 
-删除集群(保留数据目录)：
+删除集群(删除容器，保留数据目录)：
 ``` linux
 sh stopCluster.sh
+```
+
+停止和启动集群(保留容器):
+``` shell
+# 停止容器
+docker compose -f docker-compose-cluster.yml stop
+# 启动容器
+docker compose -f docker-compose-cluster.yml start
 ```
 
 #### cluster方式容器说明
