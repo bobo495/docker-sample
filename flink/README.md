@@ -84,7 +84,7 @@ mkdir ./volumes
 # 启动Flink集群
 docker compose -f docker-compose-cluster.yml up -d
 # 获取lib目录文件
-docker cp flink_jobmanager_1:/opt/flink/lib jobmanager/lib
+docker cp flink_jobmanager_1:/opt/flink/lib volumes/lib
 #  移除Flink集群
 docker compose -f docker-compose-cluster.yml down
 ```
@@ -112,7 +112,24 @@ docker compose -f docker-compose-cluster-with-volumes.yml start
 
 ### Flink-Monitor集群部署
 
-// TODO
+> 配置Flink Metrics监控通过pushgateway转发至prometheus，并通过grafana查看Flink Session和作业的监控结果。
+
+启动Flink集群(挂载了lib目录)
+``` linux
+docker compose -f docker-compose-cluster-with-monitor.yml up -d
+```
+
+移除Flink集群
+``` linux
+docker compose -f docker-compose-cluster-with-monitor.yml down
+```
+
+等待Flink集群启动完成，打开以下页面：
+    - `Flink Web`: http://localhost:8081/#/overview
+    - `PushGateway`: http://localhost:9091
+    - `Prometheus`: http://localhost:9090/targets
+    - `Grafana`: http://localhost:3000/login
+        > username: `admin`, password: `pulsar`
 
 ## 提交自定义Flink作业
 
