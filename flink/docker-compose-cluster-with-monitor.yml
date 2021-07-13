@@ -10,6 +10,7 @@ services:
     environment:
       - |
         FLINK_PROPERTIES=
+        jobmanager.rpc.address: jobmanager
         metrics.reporter.promgateway.class: org.apache.flink.metrics.prometheus.PrometheusPushGatewayReporter
         metrics.reporter.promgateway.host: pushgateway
         metrics.reporter.promgateway.port: 9091
@@ -33,6 +34,7 @@ services:
     environment:
       - |
         FLINK_PROPERTIES=
+        jobmanager.rpc.address: jobmanager
         metrics.reporter.promgateway.class: org.apache.flink.metrics.prometheus.PrometheusPushGatewayReporter
         metrics.reporter.promgateway.host: pushgateway
         metrics.reporter.promgateway.port: 9091
