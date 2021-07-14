@@ -222,9 +222,8 @@ curl http://localhost:8081/config
 }
 ```
 
-#### Api可用性验证
+#### 作业提交流程
 
-作业提交流程：
 1. 上传jar包至集群，参考接口`/jars/upload`
 
     ```bash
