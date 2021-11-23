@@ -1,3 +1,6 @@
 ### docker volumes ###
 data
 volumes
+
+### Mac store file ###
+.DS_Store
