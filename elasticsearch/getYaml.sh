@@ -18,5 +18,5 @@ sed -i 's|docker.elastic.co/elasticsearch/||g' docker-compose.yml
 sed -i 's/^ELASTIC_PASSWORD=.*$/ELASTIC_PASSWORD=esadmin/g' .env
 # 设置kibana管理员密码
 sed -i 's/^KIBANA_PASSWORD=.*$/KIBANA_PASSWORD=esadmin/g' .env
-# 设置es版本号为8.1.2
-sed -i 's/^STACK_VERSION=.*$/STACK_VERSION=8.1.2/g' .env
+# 设置es版本号为8.1.3
+sed -i 's/^STACK_VERSION=.*$/STACK_VERSION=8.1.3/g' .env
