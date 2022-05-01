@@ -24,7 +24,6 @@ services:
     ports:
       - "2182:2181"
     volumes:
-    volumes:
       - ./data/zk2:/pulsar/data/zookeeper/
       - ./conf/zookeeper.conf:/pulsar/conf/zookeeper.conf
     restart: on-failure
