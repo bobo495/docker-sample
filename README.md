@@ -26,3 +26,17 @@
 
 3. Flink-Monitor集群部署
     > 配置Flink集群的[Metrics](https://ci.apache.org/projects/flink/flink-docs-release-1.13/docs/ops/metrics/)转发至[Prometheus](https://prometheus.io/)，并通过[Grafana](https://grafana.com/)展示Metrics数据
+
+
+### [elasticsearch](./elasticsearch)
+
+> 相关链接：[Elasticsearch Guide](https://www.elastic.co/guide/en/elasticsearch/reference/8.1/index.html), [install with docker](https://www.elastic.co/guide/en/elasticsearch/reference/8.1/docker.html)
+
+- 基于官方docker部署文档实现，es集群+kibana部署
+
+### [kafka](./kafka/)
+
+> 相关链接：[kafka doc](https://kafka.apache.org/documentation/#quickstart)，[kafka github](https://github.com/apache/kafka/)
+
+- 基于Zookeeper的单节点kafka
+- 基于Kraft的单节点kafka
