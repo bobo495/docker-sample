@@ -1,0 +1,19 @@
+version: "3.8"
+
+services:
+  kafka-kraft:
+    image: per495/kafka:3.1.0
+    ports:
+      - 9092:9092
+    restart: on-failure
+    healthcheck:
+      test: bin/kafka-topics.sh --list --bootstrap-server localhost:9092
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    entrypoint:
+      - sh
+      - -c
+      - |
+        uuid=$$(bin/kafka-storage.sh random-uuid) && bin/kafka-storage.sh format -t $${uuid} -c config/kraft/server.properties
+        bin/kafka-server-start.sh config/kraft/server.properties
