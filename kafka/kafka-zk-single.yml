@@ -1,0 +1,20 @@
+version: "3.8"
+
+services:
+  kafka-zk:
+    image: per495/kafka:3.1.0
+    ports:
+      - 2181:2181
+      - 9092:9092
+    restart: on-failure
+    healthcheck:
+      test: bin/kafka-topics.sh --list --bootstrap-server localhost:9092
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    entrypoint:
+      - sh
+      - -c
+      - |
+        bin/zookeeper-server-start.sh -daemon config/zookeeper.properties
+        bin/kafka-server-start.sh config/server.properties
