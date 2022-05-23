@@ -63,9 +63,9 @@ services:
                 --web-service-url http://pulsar-proxy:8080 \
                 --broker-service-url pulsar://pulsar-proxy:6650
       depends_on:
-        - zoo1
-        - zoo2
-        - zoo3
+        - zk1
+        - zk2
+        - zk3
 
   bookie1:
     image: apachepulsar/pulsar:2.7.2
